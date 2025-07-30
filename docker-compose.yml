@@ -1,3 +1,4 @@
+
 version: '3.8'
 
 services:
@@ -11,6 +12,8 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U asm"]
       interval: 10s
@@ -28,3 +31,6 @@ services:
       - "80:80"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+volumes:
+  postgres_data:
