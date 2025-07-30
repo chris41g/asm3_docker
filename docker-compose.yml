@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   asm3_postgres:
     build:
@@ -9,16 +10,13 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "172.20.0.10:5432:5432"
+      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U asm"]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      asm3_network:
-        ipv4_address: 172.20.0.10
-        
+
   asm3:
     build:
       context: ./asm3
@@ -27,17 +25,6 @@ services:
       asm3_postgres:
         condition: service_healthy
     ports:
-      - "172.20.0.11:80:80"
+      - "80:80"
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    networks:
-      asm3_network:
-        ipv4_address: 172.20.0.11
-
-networks:
-  asm3_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-          gateway: 172.20.0.1
