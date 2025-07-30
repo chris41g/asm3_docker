@@ -12,7 +12,7 @@ This repository contains Dockerfiles and docker-compose.yml implementation of An
 Clone the repository:
 
 ```bash
-git clone https://github.com/chris41g/asm3_docker/asm3_docker.git
+git clone https://github.com/chris41g/asm3_docker.git
 cd asm3_docker
 docker compose up -d
 ```
