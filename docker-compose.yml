@@ -25,6 +25,6 @@ services:
       asm3_postgres:
         condition: service_healthy
     ports:
-      - "80:80"
+      - "8123:80"
     extra_hosts:
       - "host.docker.internal:host-gateway"
